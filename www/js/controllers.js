@@ -41,20 +41,4 @@ angular.module ('app.controllers', ['app.services'])
   $scope.shareLink = function (link) {
     Share.doShare (link);
   }
-}])
-
-.factory('intent', function($rootScope){
-    var intent = {data:null};
-
-    intent.setData = function(data){
-          intent.data = data;
-          console.log (data);
-          $rootScope.$broadcast('intent');
-        };
-
-    intent.getData = function(){
-          return intent.data;
-        };
-
-    return intent;
-});
+}]);
