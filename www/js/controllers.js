@@ -12,27 +12,9 @@ angular.module ('app.controllers', ['app.services'])
     var result = NCUOne.shortLink (link);
     // the same source link
     if (result == 1) {
-      $ionicPopup.show ({
-        'title' : '縮過了囉',
-        scope : $scope,
-        buttons : [
-          {
-            text : "好",
-            type : "button-positive"
-          }
-        ]
-      });
+      window.plugins.toast.showShortBottom('縮過了囉');
     } else if (result == 0) {
-      $ionicPopup.show ({
-        'title' : '未知異常',
-        scope : $scope,
-        buttons : [
-          {
-            text : "好",
-            type : "button-positive"
-          }
-        ]
-      });
+      window.plugins.toast.showShortBottom('未知異常');
     } else {
       $scope.shortedLink = result;
     }
