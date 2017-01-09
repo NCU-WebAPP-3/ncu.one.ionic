@@ -7,7 +7,7 @@ angular.module ('app.controllers', ['app.services'])
     $scope.inputLink = intent.getData ();
     $scope.$apply ();
     if (doShort)
-      $scope.getShortLink ();
+      $scope.getShortLink ($scope.inputLink);
   });
   $scope.getShortLink = function (link) {
     console.log (link);
