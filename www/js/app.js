@@ -20,6 +20,9 @@ angular.module('app', ['ionic', 'app.services', 'app.controllers'])
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
+    cordova.plugins.clipboard.paste (function (text) {
+      intent.setData (text);
+    });
     window.plugins.intent.getCordovaIntent (function (src) {
       intent.setData (src.clipItems[0].text);
     });

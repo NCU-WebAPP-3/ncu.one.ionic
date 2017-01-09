@@ -23,7 +23,8 @@
     "ionic-plugin-keyboard",
     "cordova-plugin-x-socialsharing",
     "cordova-plugin-intent",
-    "cordova-plugin-x-toast"
+    "cordova-plugin-x-toast",
+    "https://github.com/VersoSolutions/CordovaClipboard"
   ],
   "cordovaPlatforms": [
     "android"
