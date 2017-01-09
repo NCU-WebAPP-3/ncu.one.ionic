@@ -1,6 +1,6 @@
 angular.module('app.services', ['app.controllers'])
 
-.service ('NCUOne', function () {
+.service ('NCUOne', ['$http', function ($http) {
   this.lastLink = "";
   this.lastShortLink = "";
   this.shortLink = function (link) {
@@ -8,11 +8,19 @@ angular.module('app.services', ['app.controllers'])
       return 1;
     } else {
       this.lastLink = link;
-      this.lastShortLink = "https://ncu.one/OAO";
+      $http({
+         method: 'POST',
+         url: 'https://ncu.one/_/api/',
+         data: 'type=short_it&url=' + link
+      }).then (function (response) {
+        this.lastShortLink = response.data.url;
+      }, function (response) {
+        console.log (response);
+      });
       return this.lastShortLink;
     }
   }
-})
+}])
 
 .service ('Share', function () {
   this.doShare = function (link) {
