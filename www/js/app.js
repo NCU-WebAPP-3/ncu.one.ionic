@@ -20,11 +20,12 @@ angular.module('app', ['ionic', 'app.services', 'app.controllers'])
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
-    cordova.plugins.clipboard.paste (function (text) {
-      intent.setData (text);
-    });
-    window.plugins.intent.getCordovaIntent (function (src) {
-      intent.setData (src.clipItems[0].text);
+    window.plugins.webintent.getExtra (window.plugins.webintent.EXTRA_TEXT, function (url) {
+      intent.setData (url);
+    }, function () {
+      cordova.plugins.clipboard.paste (function (text) {
+        intent.setData (text);
+      });
     });
   });
 })

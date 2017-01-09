@@ -22,7 +22,7 @@
     "cordova-plugin-splashscreen",
     "ionic-plugin-keyboard",
     "cordova-plugin-x-socialsharing",
-    "cordova-plugin-intent",
+    "cordova-plugin-webintent2",
     "cordova-plugin-x-toast",
     "https://github.com/VersoSolutions/CordovaClipboard"
   ],
