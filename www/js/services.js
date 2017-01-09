@@ -1,15 +1,22 @@
 angular.module('app.services', ['app.controllers'])
 
-.service ('NCUOne', function () {
+.service ('NCUOne', ['$http', function ($http) {
 	this.lastLink = "";
 	this.lastShortLink = "";
-	this.shortLink = function (link) {
+	this.shortLink = function (link, callback) {
 		if (this.lastLink == link) {
-			return 1;
+			callback(this.lastShortLink);
 		} else {
-			this.lastLink = link;
-			this.lastShortLink = "https://ncu.one/OAO";
-			return this.lastShortLink;
+      this.lastLink = link;
+      $http({
+         method: 'POST',
+         url: 'https://ncu.one/_/api/',
+         data: 'type=short_it&url=' + link
+      }).then (function (response) {
+        callback(this.lastShortLink = response.data.url);
+      }, function (response) {
+        console.log (response);
+      });
 		}
 	}
 })
