@@ -9,12 +9,12 @@ angular.module ('app.controllers', ['app.services'])
   });
   $scope.getShortLink = function (link) {
     console.log (link);
-    var result = NCUOne.shortLink(link, function(shorted) {
+    NCUOne.shortLink(link, function(shorted) {
 			// the same source link
-			if (result == 0) {
+			if (shorted == 0) {
 				window.plugins.toast.showShortBottom('未知異常');
 			} else {
-				$scope.shortedLink = result;
+				$scope.shortedLink = shorted;
 			}
 		});
   }
