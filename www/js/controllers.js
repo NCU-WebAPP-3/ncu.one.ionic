@@ -11,7 +11,7 @@ angular.module ('app.controllers', ['app.services'])
     console.log (link);
     NCUOne.shortLink(link, function(shorted) {
 			// the same source link
-			if (shorted == 0) {
+			if (shorted === 0) {
 				window.plugins.toast.showShortBottom('未知異常');
 			} else {
 				$scope.shortedLink = shorted;
