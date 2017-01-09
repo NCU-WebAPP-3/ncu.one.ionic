@@ -11,11 +11,13 @@ angular.module('app.services', ['app.controllers'])
       $http({
          method: 'POST',
          url: 'https://ncu.one/_/api/',
-         data: 'type=short_it&url=' + link
+         data: 'type=short_it&url=' + link,
+         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
       }).then (function (response) {
         callback(this.lastShortLink = response.data.url);
       }, function (response) {
         console.log (response);
+        callback(0);
       });
 		}
 	}
@@ -41,10 +43,12 @@ angular.module('app.services', ['app.controllers'])
 .factory('intent', ['$rootScope', function($rootScope){
 	var intent = {data:null};
 
-	intent.setData = function(data){
+	intent.setData = function(data, doShort){
+	  if (typeof doShort === 'undefined')
+	    doShort = true;
 		intent.data = data;
 		console.log (data);
-		$rootScope.$broadcast('intent');
+		$rootScope.$broadcast('intent', doShort);
 	};
 
 	intent.getData = function(){

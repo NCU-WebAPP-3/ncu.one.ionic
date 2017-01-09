@@ -24,7 +24,7 @@ angular.module('app', ['ionic', 'app.services', 'app.controllers'])
       intent.setData (url);
     }, function () {
       cordova.plugins.clipboard.paste (function (text) {
-        intent.setData (text);
+        intent.setData (text, false);
       });
     });
   });

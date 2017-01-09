@@ -3,23 +3,21 @@ angular.module ('app.controllers', ['app.services'])
 .controller ('MainCtrl', ['$scope', 'NCUOne', 'Share', 'intent', '$ionicPopup', '$rootScope', function ($scope, NCUOne, Share, intent, $ionicPopup, $rootScope) {
   $scope.inputLink = "";
   $scope.shortedLink = "";
-  $rootScope.$on('intent', function() {
+  $rootScope.$on('intent', function(event, doShort) {
     $scope.inputLink = intent.getData ();
     $scope.$apply ();
+    if (doShort)
+      $scope.getShortLink ();
   });
   $scope.getShortLink = function (link) {
     console.log (link);
     NCUOne.shortLink(link, function(shorted) {
-			// the same source link
-			if (shorted === 0) {
-				window.plugins.toast.showShortBottom('未知異常');
-			} else {
-				$scope.shortedLink = shorted;
-			}
-		});
-  }
-
-  $scope.shareLink = function (link) {
-    Share.doShare (link);
+      if (shorted === 0) {
+        window.plugins.toast.showShortBottom('Something went wrong...');
+      } else {
+        $scope.shortedLink = shorted;
+        Share.doShare (link);
+      }
+    });
   }
 }]);
