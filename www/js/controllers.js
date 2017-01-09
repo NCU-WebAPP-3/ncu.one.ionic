@@ -16,7 +16,7 @@ angular.module ('app.controllers', ['app.services'])
         window.plugins.toast.showShortBottom('Something went wrong...');
       } else {
         $scope.shortedLink = shorted;
-        Share.doShare (link);
+        Share.doShare (shorted);
       }
     });
   }

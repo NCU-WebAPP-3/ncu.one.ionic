@@ -1,20 +1,20 @@
 angular.module('app.services', ['app.controllers'])
 
 .service ('NCUOne', ['$http', function ($http) {
-	this.lastLink = "";
-	this.lastShortLink = "";
+	var lastLink = "";
+	var lastShortLink = "";
 	this.shortLink = function (link, callback) {
-		if (this.lastLink == link) {
-			callback(this.lastShortLink);
+		if (lastLink == link) {
+			callback(lastShortLink);
 		} else {
-      this.lastLink = link;
+      lastLink = link;
       $http({
          method: 'POST',
          url: 'https://ncu.one/_/api/',
          data: 'type=short_it&url=' + link,
          headers: {'Content-Type': 'application/x-www-form-urlencoded'}
       }).then (function (response) {
-        callback(this.lastShortLink = response.data.url);
+        callback(lastShortLink = response.data.url);
       }, function (response) {
         console.log (response);
         callback(0);
