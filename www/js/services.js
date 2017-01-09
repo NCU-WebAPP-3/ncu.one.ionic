@@ -19,7 +19,7 @@ angular.module('app.services', ['app.controllers'])
       });
 		}
 	}
-})
+}])
 
 .service ('Share', function () {
 	this.doShare = function (link) {
