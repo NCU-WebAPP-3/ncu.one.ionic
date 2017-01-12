@@ -15,7 +15,7 @@ FILENAME = "platforms/android/AndroidManifest.xml"
 
 data = File.read(FILENAME)
 if not data.include? INTENT_FILTER
-  data[TARGET] = INTENT_FILTER
+	data[TARGET] = INTENT_FILTER
 end
 
 File.open(FILENAME, 'w') do |f|
